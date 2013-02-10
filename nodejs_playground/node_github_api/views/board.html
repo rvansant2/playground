@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block title %}Node Github API App{% endblock %}
+
+{% block head %}
+  {% parent %}
+  <link rel="stylesheet" href="css/main.css">
+{% endblock %}
+
+{% block content %}
+<div class="hero-unit">
+	<div class="media">
+	  <a class="pull-left" href="{{user.html_url}}">
+	    <img class="media-object" alt="User:{{username}} avatar" style="width: 64px; height: 64px;" src="{{user.avatar_url}}" />
+	  </a>
+	  <div class="media-body" style="margin-left: 68px;">
+	    <h2 class="media-heading">Hey there, {{username}}!</h2>
+	    This nodejs app connects to your Github account and lists out your repos.
+	 
+	    <!-- Nested media object -->
+	    <div class="media">
+	    	<br/>
+	    </div>
+	  </div>
+	</div>
+	<div class="media">
+		<p>
+			Followers: <a href="{{user.followers_url|replace('api.','')|replace('users/','')}}">{{user.followers}}</a><br/>
+			Following: <a href="{{user.following_url|replace('api.', '')|replace('users/','')}}">{{user.following}}</a>
+		</p>
+	</div>
+	<br class="clearfix" />
+</div>
+<div class="row">
+	<div class="span4">
+		<h2>A list of your <a href="{{repos_url}}">repos</a>:</h2>
+		{% for item in repos -%}
+		<p>
+			<a href="{{item.url|replace('api.','')|replace('repos/','')}}">{{item.name}}</a><br/>
+			{{item.description}}
+		</p>
+		{%- endfor %}
+	</div>
+</div>
+{% endblock %}

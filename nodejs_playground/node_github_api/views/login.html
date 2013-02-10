@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block title %}Node Github API App{% endblock %}
+
+{% block head %}
+  {% parent %}
+  <link rel="stylesheet" href="css/main.css">
+{% endblock %}
+
+{% block content %}
+<div class="row">
+	<div class="span4">
+		<h2>Connect to Github API</h2>
+		<p>
+			<a href="/auth/github" class="btn btn-large btn-primary">Sign in with Github</a>
+		</p>
+	</div>
+</div>
+{% endblock %}

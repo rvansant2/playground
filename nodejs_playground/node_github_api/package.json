@@ -1,0 +1,19 @@
+{
+  "name": "node_github_api",
+  "subdomain": "rvansant.node_github_api",
+  "scripts": {
+    "start": "app.js"
+  },
+  "version": "0.0.0-17",
+  "engines": {
+    "node": "0.8.x"
+  },
+  "dependencies": {
+    "express": "*",
+    "consolidate": "*",
+    "connect": "*",
+    "connect-redis": "*",
+    "everyauth": "*",
+    "swig": "*"
+  }
+}
