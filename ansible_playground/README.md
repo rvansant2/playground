@@ -6,4 +6,4 @@ Ansible playground
 
 ## Devstack List
 ============
-- nodejs-express-devstack
+- [nodejs-express-devstack](https://github.com/rvansant2/playground/tree/master/ansible_playground/nodejs-express-devstack)
