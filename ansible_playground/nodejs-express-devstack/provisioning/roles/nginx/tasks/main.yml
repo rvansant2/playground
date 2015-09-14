@@ -1,0 +1,22 @@
+---
+
+- name: Install nginx webserver
+  apt: pkg=nginx state=latest
+  notify:
+    - nginx-restart
+
+- name: Set the default nginx conf
+  template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf owner=root mode=0600
+  notify:
+    - nginx-restart
+
+- name: Set nginx vhost file
+  template: src=nodejs-vhost.conf.j2 dest="/etc/nginx/sites-enabled/{{ project_name }}.{{ env }}.conf" mode=0640
+  notify:
+    - nginx-restart
+  tags: nodejs
+
+- name: Remove default config in sites-enabled
+  shell: chdir=/etc/nginx/sites-enabled/ rm -f default
+  notify:
+    - nginx-restart

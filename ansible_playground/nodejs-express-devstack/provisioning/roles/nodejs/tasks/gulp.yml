@@ -1,0 +1,5 @@
+---
+# Install grunt via Ansible, in case of added grunt tasks through Ansible provisioning
+- name: Install gulp task runner
+  command: npm install -g gulp
+  tags: gulp

@@ -1,0 +1,5 @@
+---
+# Install grunt via Ansible, in case of added grunt tasks through Ansible provisioning
+- name: Install grunt-cli
+  command: npm install -g grunt-cli
+  tags: grunt

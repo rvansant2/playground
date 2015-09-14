@@ -1,0 +1,14 @@
+---
+
+- name: Bundle install
+  command: chdir=/var/www/{{ project_name }}.{{ env }}/ bundle install
+  tags: sass
+
+- name: Run npm install
+  command: chdir=/var/www/{{ project_name }}.{{ env }}/ npm install
+  tags: nodejs
+
+- name: Start node application/server
+  command: chdir=/var/www/{{ project_name }}.{{ env }}/ forever start {{ node_start_file }}
+  tags: forever
+

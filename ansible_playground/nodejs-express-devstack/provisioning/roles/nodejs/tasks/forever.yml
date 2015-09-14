@@ -1,0 +1,5 @@
+---
+
+- name: Install forever npm package
+  command: npm install -g forever
+  tags: forever

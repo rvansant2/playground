@@ -1,0 +1,6 @@
+.DS_Store
+.idea
+
+/.vagrant/
+
+/docroot/node-app/node_modules/*

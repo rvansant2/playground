@@ -1,0 +1,14 @@
+---
+- name: Install nodejs
+  apt: pkg=nodejs state=latest
+
+- name: Symlink nodejs to node
+  file: src="/usr/bin/nodejs" dest="/usr/bin/node" state="link"
+
+- name: Install npm
+  apt: pkg=npm state=latest
+
+- include: grunt.yml
+- include: gulp.yml
+- include: bower.yml
+- include: forever.yml

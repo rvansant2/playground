@@ -1,0 +1,16 @@
+---
+
+# Update package manager
+- name: Update apt-get
+  apt: update_cache=yes cache_valid_time=3600
+
+# Install core packages
+- name: Checking and adding essentials
+  apt: name={{ item }} state=present
+  with_items:
+    - build-essential
+    - python-software-properties
+    - python-pycurl
+    - python-mysqldb
+    - curl
+    - git-core

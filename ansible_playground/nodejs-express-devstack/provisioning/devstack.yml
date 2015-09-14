@@ -1,0 +1,10 @@
+---
+- hosts: web
+  sudo: yes
+  roles:
+    - common
+    - nginx
+    - nodejs
+    - ruby
+    - mongodb
+    - post-provision
