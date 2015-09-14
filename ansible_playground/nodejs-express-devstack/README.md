@@ -1,6 +1,7 @@
 NodeJS Express Devstack
 ============
 ## This is a full JavaScript devstack. ##
+-------------------
  - Requirements:
     - Ansible [Install](https://docs.ansible.com/ansible/intro_installation.html)
     - Vagrant [Download](https://www.vagrantup.com/downloads.html)
@@ -15,7 +16,7 @@ NodeJS Express Devstack
    - ReactJS could be used as well
 
 # Devstack setup #
-====================================
+-------------------
 - NodeJS v0.10.25
 - Express
 - MongoDB
@@ -23,7 +24,7 @@ NodeJS Express Devstack
 - Sass
 
 ## Run ##
-====================================
+-------------------
 
 - Clone repo using `git clone ...` command
 - Go into the repo directory via `cd nodejs-express-devstack`
@@ -31,6 +32,6 @@ NodeJS Express Devstack
 - Go to vagrant via `vagrant ssh` and check stack `node -v`, `mongo --version`, `gulp -v`, `sass -v`, `ruby -v`
 
 ## Additional features ##
-====================================
+-------------------
 - Bootstrap sytem script to add listed "Requirements" above
 - Add default database and possible seeding
