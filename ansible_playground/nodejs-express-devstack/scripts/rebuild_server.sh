@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-vagrant destroy && vagrant reload
+vagrant destroy && vagrant up
