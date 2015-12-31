@@ -1,20 +1,32 @@
 //console.log('Version: ' + process.version);
-config          = require('./lib/config');
+config              = require('./lib/config');
 
-var express     = require('express'),
-    swig        = require('swig'),
-    cons        = require('consolidate'),
-    app         = express(),
-    http        = require('http'),
-    https       = require('https'),
-    connect     = require('connect'),
-    redis       = require('connect-redis')(express),
-    everyauth   = require('everyauth'),
-    sesh        = new redis({
+var everyauth       = require('everyauth'),
+    express         = require('express'),
+    swig            = require('swig'),
+    cons            = require('consolidate'),
+    app             = express(),
+    http            = require('http'),
+    https           = require('https'),
+    connect         = require('connect'),
+    session         = require('express-session'),
+    redis           = require('connect-redis')(session),
+    bodyParser      = require('body-parser'),
+    cookieParser    = require('cookie-parser'),
+    methodOverride  = require('method-override'),
+    errorHandler    = require('express-error-handler'),
+    env             = process.env.NODE_ENV || 'development';
+    sesh            = new redis({
                             host: config.redis_host,
                             port: config.redis_port,
                             pass: config.redis_pw
                           });
+app.use(session({
+  store: sesh,
+  secret: config.redis_secret,
+  resave: true,
+  saveUninitialized: true
+}));
 
 everyauth.debug = true;
 
@@ -23,7 +35,7 @@ everyauth.github
   .appSecret(config.gh_secret)
   .entryPath('/auth/github')
   .callbackPath('/auth/github/callback')
-  .scope('gist')
+  .scope('gist,public_repo,user')
   .findOrCreateUser(function (session, accessToken, accessTokenExtra, githubUserMetadata) {
     session.oauth = accessToken;
     return session.uid = githubUserMetadata.login;
@@ -35,50 +47,39 @@ everyauth.everymodule.handleLogout(function (req, res) {
   res.end();
 });
 
-swig.init({
-  root: __dirname + '/views', 
-  allowErrors: true
-});
+app.engine('html', cons.swig);
+app.set('view engine', 'html');
+app.set('views', __dirname + '/views');
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(everyauth.middleware());
+app.use(methodOverride());
+app.use(express.static(__dirname + '/public'));
 
-app.configure(function() {
-  app.engine('html', cons.swig);
-  app.set('view engine', 'html');
-  app.set('views', __dirname + '/views');
-  app.use(express.bodyParser());
-  app.use(express.cookieParser());
-  app.use(express.session({store: sesh, secret: config.redis_secret}));
-  app.use(everyauth.middleware());
-  app.use(express.methodOverride());
-  app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
-});
-
-app.configure('development', function() {
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-});
- 
-app.configure('production', function() {
-  app.use(express.errorHandler());
-});
-
+if ( 'development' == env ) {
+  app.use(errorHandler({ dumpExceptions: true, showStack: true }));
+} else if ( 'production' == env ) {
+  app.use(errorHandler());
+}
 
 app.get('/',function(req, res) {
   if (req.session && req.session.uid) {
-      return res.redirect('/board');
+    return res.redirect('/board');
   }
   res.render('login', {header: 'Github Feed'});
 });
 
 app.get('/board',function(req, res) {
   if (!req.session.uid) {
-      return res.redirect('/');
+    return res.redirect('/');
   }
   
   var repos,
       opts = {
               host: "api.github.com",
               path: '/user/repos?access_token=' + req.session.oauth,
-              method: "GET"
+              method: "GET",
+              headers: { 'User-Agent': 'nodejs_github_api' }
       },
       request = https.request(opts, function(resp) {
         var data = "";
@@ -95,4 +96,4 @@ app.get('/board',function(req, res) {
       request.end();
 });
 
-app.listen(process.env.PORT || 8001);
+app.listen(process.env.PORT || 8888);

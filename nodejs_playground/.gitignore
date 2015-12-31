@@ -1,2 +1,3 @@
 .DS_Store
 .idea
+/nodejs_playground/node_github_api/node_modules/*

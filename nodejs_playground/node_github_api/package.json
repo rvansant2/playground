@@ -1,19 +1,37 @@
 {
   "name": "node_github_api",
-  "subdomain": "rvansant.node_github_api",
+  "subdomain": "HOST-DOMAIN",
+  "description": "Nodejs Github API application.",
   "scripts": {
-    "start": "app.js"
+    "start": "node app.js"
   },
-  "version": "0.0.0-17",
+  "version": "0.0.0-16",
   "engines": {
-    "node": "0.8.x"
+    "node": "4.2.x"
   },
   "dependencies": {
-    "express": "*",
-    "consolidate": "*",
-    "connect": "*",
-    "connect-redis": "*",
-    "everyauth": "*",
-    "swig": "*"
+    "body-parser": "^1.14.2",
+    "connect": "~3.4.0",
+    "connect-redis": "^1.4.7",
+    "consolidate": "~0.13.1",
+    "cookie-parser": "^1.4.0",
+    "everyauth": "~0.4.9",
+    "express": "~4.13.0",
+    "express-error-handler": "^1.0.1",
+    "express-session": "^1.12.1",
+    "method-override": "^2.3.5",
+    "swig": "~1.4.2"
+  },
+  "bundledDependencies": [
+    "connect-redis",
+    "everyauth",
+    "connect",
+    "consolidate",
+    "swig",
+    "express"
+  ],
+  "env": {
+    "npm_config_rebuild_bundle": false,
+    "npm_config_production": true
   }
 }
