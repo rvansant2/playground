@@ -17,6 +17,6 @@
   tags: nodejs
 
 - name: Remove default config in sites-enabled
-  shell: chdir=/etc/nginx/sites-enabled/ rm -f default
+  file: path=/etc/nginx/sites-enabled/ state=absent
   notify:
     - nginx-restart
