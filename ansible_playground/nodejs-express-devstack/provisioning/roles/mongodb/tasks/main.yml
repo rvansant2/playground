@@ -16,6 +16,6 @@
   tags: mongodb
 
 - name: Install mongodb
-  apt: pkg=mongodb-org state=latest update_cache=yes
+  apt: pkg=mongodb-org state=build-dep state=latest update_cache=yes force=true
   notify: mongodb-start
   tags: mongodb

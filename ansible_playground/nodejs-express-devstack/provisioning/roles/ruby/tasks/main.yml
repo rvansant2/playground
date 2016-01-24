@@ -1,5 +1,23 @@
 ---
 
+- name: Test if rvm is installed
+  command: bash "rvm --help"
+  register: rvm_is_installed
+  failed_when: "'No such file or directory' in rvm_is_installed.stderr"
+  ignore_errors: True
+  tags: ruby
+
+- name: Download rvm
+  command: bash -lc "curl -L https://get.rvm.io | bash -s"
+  when: rvm_is_installed|failed
+  tags: ruby
+
+# - name: Install ruby/ruby gems version - set default
+#   command: bash -lc "rvm install 2.2.0"
+#   when: rvm_is_installed|failed
+#   tags: ruby
+#   sudo: yes
+
 - name: Install bundler
   command: bash -lc "gem install bundler"
   tags: ruby
