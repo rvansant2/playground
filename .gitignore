@@ -1,0 +1,4 @@
+.DS_Store
+.idea/
+docker_playground/.gitignore
+nodejs_playground/node_github_api/node_modules/

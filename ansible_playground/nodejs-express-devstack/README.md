@@ -1,5 +1,3 @@
-[ ![Codeship Status for rvansant2/unicorn-nodeapp](https://codeship.com/projects/184dc6b0-a563-0132-c797-6e676e1a86e3/status?branch=master)](https://codeship.com/projects/66673)
-
 NodeJS Express Devstack
 ============
 ## This is a full JavaScript devstack. ##
@@ -8,7 +6,7 @@ NodeJS Express Devstack
     - Ansible [Install](https://docs.ansible.com/ansible/intro_installation.html)
     - Vagrant [Download](https://www.vagrantup.com/downloads.html)
     - Ruby
-        ..* [Ruby](http://victorleungtw.com/ruby-gems/)
+        ..* [Ruby](https://www.ruby-lang.org/en/)
         ⋅⋅* berkshelf `gem install berkshelf`
         ⋅⋅* vagrant-berkshelf `gem install berkshelf`
         ⋅⋅* vagrant-hostmanager `gem install vagrant-hostmanager`

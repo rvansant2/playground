@@ -1,0 +1,32 @@
+{
+  "name"          : "wordpress/composer",
+  "description"   : "WordPress Composer",
+  "authors"       : [
+    {
+      "name"    : "rvansant2@gmail.com",
+      "email"   : "rvansant2@gmail.com",
+      "homepage": "https://github.com/rvansant2"
+    }
+  ],
+  "type"          : "project",
+  "repositories"  : [
+    {
+      "type": "composer",
+      "url" : "https://wpackagist.org"
+    }
+  ],
+  "config"        : {
+  },
+  "require": {
+  },
+  "extra": {
+  },
+  "require-dev"   : {
+    "phpunit/phpunit"                                : "4.4.*",
+    "squizlabs/php_codesniffer"                      : "2.*"
+  },
+  "scripts"       : {
+  },
+  "post-install-cmd" : [
+  ]
+}

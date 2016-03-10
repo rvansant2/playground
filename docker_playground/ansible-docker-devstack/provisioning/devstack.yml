@@ -1,0 +1,7 @@
+---
+- hosts: web
+  become: yes # ansible 2.0.x
+  become_method: sudo # ansible 2.0.x
+  #sudo: yes # ansible 1.9.1 and lower
+  roles:
+    - docker
