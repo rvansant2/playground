@@ -1,0 +1,32 @@
+version: '2'
+services:
+  mongodb:
+    image: mongo
+    volumes:
+      - ./tmp/data:/data/db
+    ports:
+      - 27017:27017
+  server:
+    image: rvansant2/hapijs-reactjs-devstack-server
+    container_name: 'hapijs-reactjs-devstack-server'
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+      args:
+        NODE_ENV: ${NODE_ENV}
+    links:
+      - mongodb
+    ports:
+      - 80
+  client:
+    image: rvansant2/hapijs-reactjs-devstack-client
+    container_name: 'hapijs-reactjs-devstack-client'
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+      args:
+        NODE_ENV: ${NODE_ENV}
+    depends_on:
+      - server
+    ports:
+      - 80

@@ -73,7 +73,7 @@ function install_dmg {
   detach_volume "${volume_path}"
 }
 
-function vercomp () {
+function vercomp {
     if [[ $1 == $2 ]]
     then
         echo 0
@@ -107,7 +107,7 @@ function vercomp () {
     echo 0
 }
 
-function run_script () {
+function run_script {
   local path=$1
   echo -e "\tRunning $(basename $path)"
   source $path

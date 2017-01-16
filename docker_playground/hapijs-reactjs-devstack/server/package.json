@@ -1,0 +1,40 @@
+{
+  "name": "docker-compose-javascript-devstack",
+  "version": "1.0.0",
+  "description": "Devstack using hapijs, React and MongoDB",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "lab -v -D -l -C",
+    "develop": "gulp"
+  },
+  "keywords": [
+    "hapijs",
+    "mongodb",
+    "nodejs"
+  ],
+  "author": "rvansant2",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.0.1",
+    "blipp": "^2.3.0",
+    "boom": "^3.2.2",
+    "config": "^1.21.0",
+    "glue": "^3.4.0",
+    "good": "^7.0.1",
+    "good-console": "^6.1.2",
+    "good-squeeze": "^4.0.0",
+    "hapi": "^15.0.3",
+    "joi": "^9.0.4",
+    "joi-objectid": "^2.0.0",
+    "lodash": "^4.15.0",
+    "moment": "^2.14.1"
+  },
+  "devDependencies": {
+    "glue": "^3.3.0",
+    "gulp": "^3.9.1",
+    "gulp-lab": "^1.0.6",
+    "gulp-nodemon": "^2.1.0",
+    "lab": "^10.9.0"
+  }
+}
