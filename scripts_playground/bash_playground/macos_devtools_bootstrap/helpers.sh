@@ -6,24 +6,24 @@ GREEN='\033[1;32m'
 RED='\033[0;31m'
 NC='\033[0m' # Show no Color
 
-function log_info {
+log_info() {
     echo -e "\n${GREEN}Info: ${1}${NC}"
 }
 
-function log_error {
+log_error() {
     echo -e "\n${RED}Error: ${1}${NC}"
 }
 
-function log_warn {
+log_warn() {
     echo -e "\n${YELLOW}Warning: ${1}${NC}"
 }
 
-function prompt {
+prompt() {
     echo -en "\n${BLUE}${1}${NC}"
     read
 }
 
-function PROJECT_NAME {
+PROJECT_NAME() {
   # Grab project Name from Vagrantfile
   project_name_regex='project_name = "([^"]*)"'
   [[ $(cat Vagrantfile) =~ $project_name_regex ]]
@@ -32,14 +32,14 @@ function PROJECT_NAME {
 
 # Params:
 #   url ending in dmg name
-function strip_url {
+strip_url() {
   echo $( sed "s/^.*\///" <(echo "${1}"))
 }
 
 # Params:
 #   dmg file path
 #   varaible for return volume path
-function attach_volume {
+attach_volume() {
   log_info "Attaching ${1}"
   volume="$(sudo hdiutil attach "${1}" | grep "Volumes" | cut -f 3- )"
   eval "${2}=\"${volume}\""
@@ -48,7 +48,7 @@ function attach_volume {
 
 # Params:
 #   volume path
-function detach_volume {
+detach_volume() {
   log_info "Detaching ${1}"
   sudo hdiutil detach "${1}" >> /dev/null
   log_info "\tDetached"
@@ -56,7 +56,7 @@ function detach_volume {
 # Params:
 #   volume path
 #   pkg file name
-function install_pkg {
+install_pkg() {
   log_info "Installing '${1}/${2}'. Do not run the .pkg file that may pop up."
   sudo installer -pkg "${volume}/${2}" -target / >> /dev/null
   log_info "\tInstalled ${2}"
@@ -65,7 +65,7 @@ function install_pkg {
 # Params:
 #   dmg file path
 #   pkg file name
-function install_dmg {
+install_dmg() {
   volume_path=''
 
   attach_volume "${1}" volume_path
@@ -73,7 +73,7 @@ function install_dmg {
   detach_volume "${volume_path}"
 }
 
-function vercomp {
+vercomp() {
     if [[ $1 == $2 ]]
     then
         echo 0
@@ -107,7 +107,7 @@ function vercomp {
     echo 0
 }
 
-function run_script {
+run_script() {
   local path=$1
   echo -e "\tRunning $(basename $path)"
   source $path

@@ -5,7 +5,7 @@
 
 . ./helpers.sh --source-only
 
-function install_command_line_tools {
+install_command_line_tools() {
     if pkgutil --pkg-info=com.apple.pkg.CLTools_Executables &> /dev/null; then
         return
     fi
@@ -24,7 +24,7 @@ function install_command_line_tools {
     fi
 }
 
-function install_homebrew {
+install_homebrew() {
     log_info "Checking if Homebrew is installed..."
     if ! hash brew &> /dev/null; then
         log_info "Installing Homebrew..."
@@ -37,7 +37,7 @@ function install_homebrew {
     brew update &> /dev/null
 }
 
-function install_virutal_box {
+install_virutal_box() {
     if hash vboxmanage &> /dev/null; then
         VIRTBOX_VERSION_FULL=$( cd ~; vboxmanage --version)
         VIRTBOX_VERSION=${VIRTBOX_VERSION_FULL:0:6}
@@ -68,7 +68,7 @@ function install_virutal_box {
     fi
 }
 
-function install_vagrant {
+install_vagrant() {
   VAGRANT_VERSION=$( cd ~; vagrant --version 2> /dev/null | awk '{ print $2 }')
   VAGRANT_VERSION_MINIMUM=$(cat .vagrant-version)
   if hash vagrant &> /dev/null && (( $(vercomp $VAGRANT_VERSION $VAGRANT_VERSION_MINIMUM) < 2 )); then
@@ -102,7 +102,7 @@ function install_vagrant {
   log_info "Done installing Vagrant"
 }
 
-function install_ruby_dependencies {
+install_ruby_dependencies() {
     RUBY_VERSION_MINIMUM=$(cat .ruby-version)
     if ! hash rvm &> /dev/null; then
         log_info "Installing rvm (ruby version manager)..."
@@ -127,7 +127,7 @@ function install_ruby_dependencies {
 }
 
 
-function install_vagrant_berkshelf {
+install_vagrant_berkshelf() {
     if vagrant plugin list | grep "vagrant-berkshelf" &> /dev/null; then
         return
     fi
@@ -138,7 +138,7 @@ function install_vagrant_berkshelf {
     log_info "Done installing Vagrant Berkshelf"
 }
 
-function install_vagrant_hostmanager {
+install_vagrant_hostmanager() {
     if vagrant plugin list | grep "vagrant-hostmanager" &> /dev/null; then
         return
     fi
@@ -149,7 +149,7 @@ function install_vagrant_hostmanager {
     log_info "Done installing Vagrant Hostmanager"
 }
 
-function install_node {
+install_node() {
     NODE_VERSION=$(cat .node-version)
     if ! hash nvm &> /dev/null; then
         log_info "Installing nvm (node version manager)..."
@@ -165,7 +165,7 @@ function install_node {
     nvm install -s v$NODE_VERSION &> /dev/null
 }
 
-function install_git {
+install_git() {
     if hash git &> /dev/null; then
         return
     fi
@@ -177,7 +177,7 @@ function install_git {
     fi
 }
 
-function install_ansible {
+install_ansible() {
     if hash ansible &> /dev/null; then
         return
     fi
@@ -197,7 +197,7 @@ function install_ansible {
 #    install_ruby
 #}
 
-function main {
+main() {
     install_command_line_tools
     install_homebrew
     install_virutal_box

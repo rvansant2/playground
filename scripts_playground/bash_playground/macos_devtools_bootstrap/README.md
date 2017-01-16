@@ -16,5 +16,10 @@ Scripts to set up your development environment with essential tools:
 Getting Started
 ------
 
-- Make sure the bootstrap script has execute permissions or run `chmod +x bootstrap.sh`.
+- Make sure the bootstrap script has execute permissions or run `sudo chmod +x bootstrap.sh`.
 - Run command `./bootstrap.sh`
+
+Todo
+------
+- Add install for docker (native) package
+
