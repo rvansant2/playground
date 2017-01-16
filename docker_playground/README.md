@@ -7,3 +7,4 @@ Docker playground
 ## Devstack List ##
 -------------------
 - [ansible-docker-devstack](https://github.com/rvansant2/playground/tree/master/docker_playground/ansible-docker-devstack)
+- [hapijs-reactjs-devstack (with docker-compose)](https://github.com/rvansant2/playground/tree/master/docker_playground/hapijs-reactjs-devstack)
