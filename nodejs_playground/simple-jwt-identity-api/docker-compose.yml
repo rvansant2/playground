@@ -1,0 +1,26 @@
+version: '2'
+services:
+  mongodb:
+    image: mongo:3.2
+    volumes:
+      - './db-data:/data/db'
+    ports:
+      - "27017:27017"
+
+  api:
+    image: simple-jwt-identity-api:${TAG}
+    container_name: 'jwt-identity-api'
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NODE_ENV: ${NODE_ENV}
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
+    ports:
+      - "8000:8000"
+
+volumes:
+  db-data:
