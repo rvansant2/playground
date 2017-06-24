@@ -12,13 +12,13 @@ module.exports = _.merge( {}, {
     host: '0.0.0.0'
   },
   mongodb: {
-    url: "mongodb://0.0.0.0:27017/identity",
-    uri: "mongodb://0.0.0.0:27017/identity",
+    url: "mongodb://mongodb:27017/identity",
+    uri: "mongodb://mongodb:27017/identity",
     settings: {},
     bluebird: false
   },
   db: {
-    host: '0.0.0.0:27017',
+    host: 'mongodb:27017',
     name: 'identity'
   },
   oauth: {

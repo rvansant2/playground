@@ -8,17 +8,17 @@ const _ = require( 'lodash' );
 module.exports = _.merge( {}, {
   api: {
     port: 8000,
-    address: '127.0.0.1',
-    host: '127.0.0.1'
+    address: 'mongodb',
+    host: 'mongodb'
   },
   mongodb: {
-    url: "mongodb://127.0.0.1:27017/identity",
-    uri: "mongodb://127.0.0.1:27017/identity",
+    url: "mongodb://mongodb:27017/identity",
+    uri: "mongodb://mongodb:27017/identity",
     settings: {},
     bluebird: false
   },
   db: {
-    host: '127.0.0.1:27017',
+    host: 'mongodb:27017',
     name: 'identity'
   },
   oauth: {
