@@ -1,0 +1,26 @@
+version: "2"
+services:
+  web:
+    depends_on:
+      - mongo
+    build:
+      context: ./nodejs
+    volumes:
+      - ./docroot:/var/www/app
+    ports:
+      - "3000:3000"
+    networks:
+      default: {}
+
+  mongo:
+    image: mongo:latest
+    networks:
+      default: {}
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./db-data:/data/db
+
+volumes:
+  db-data:
+networks: {}
